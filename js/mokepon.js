@@ -4,6 +4,12 @@ let vidasJugador = 3
 let vidasEnemigo = 3
 
 function iniciarJuego() {
+    let sectionSelecconarAtaque = document.getElementById('seleccionar-ataque')
+    sectionSelecconarAtaque.style.display = 'none'
+
+    let sectionReiniciar = document.getElementById('reiniciar')
+    sectionReiniciar.style.display = 'none'
+
     let botonMascotaJugador = document.getElementById('boton-mascota')
     botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador)
 
@@ -19,6 +25,12 @@ function iniciarJuego() {
 }
 
 function seleccionarMascotaJugador() {
+    let sectionSelecconarMascota = document.getElementById('seleccionar-mascota')
+    sectionSelecconarMascota.style.display = 'none'
+
+    let sectionSelecconarAtaque = document.getElementById('seleccionar-ataque')
+    sectionSelecconarAtaque.style.display = 'block'
+
     let inputHipodoge = document.getElementById('hipodoge')
     let inputCapipepo = document.getElementById('capipepo')
     let inputRatigueya = document.getElementById('ratigueya')
@@ -29,7 +41,7 @@ function seleccionarMascotaJugador() {
     } else if (inputCapipepo.checked) {
         spanMascotaJugador.innerHTML = 'Capipepo'
     } else if (inputRatigueya.checked) {
-        spanMascotaJugador.innerHTML = 'Ratigueya'
+        spanMascotaJugador.innerHTML = 'Ratigueya' 
     } else {
         alert('Selecciona una mascota')
     }
@@ -135,6 +147,9 @@ function crearMensajeFinal(resultadoFinal) {
     botonAgua.disabled = true
     let botonTierra = document.getElementById('boton-tierra')
     botonTierra.disabled = true
+
+    let sectionReiniciar = document.getElementById('reiniciar')
+    sectionReiniciar.style.display = 'block'
 }
 
 function reiniciarJuego() {
