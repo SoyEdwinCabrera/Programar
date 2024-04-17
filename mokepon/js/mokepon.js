@@ -29,7 +29,7 @@ function seleccionarMascotaJugador() {
     sectionSelecconarMascota.style.display = 'none'
 
     let sectionSelecconarAtaque = document.getElementById('seleccionar-ataque')
-    sectionSelecconarAtaque.style.display = 'block'
+    sectionSelecconarAtaque.style.display = 'flex'
 
     let inputHipodoge = document.getElementById('hipodoge')
     let inputCapipepo = document.getElementById('capipepo')
@@ -128,8 +128,7 @@ function crearMensaje(resultado) {
     let sectionMensajes = document.getElementById('mensajes')
     
     let parrafo = document.createElement('p')
-    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', las mascota del enemigo atacó con ' + ataqueEnemigo + '- ' + resultado + '🎉'
-
+    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', las mascota del enemigo atacó con ' + ataqueEnemigo + '- ' + resultado + '.'
     sectionMensajes.appendChild(parrafo)
 }
 
