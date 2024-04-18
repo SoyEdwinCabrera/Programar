@@ -93,3 +93,8 @@ flex-direction: column;
   font-family: "Poppins", sans-serif;
   background: transparent;
 }
+
+.ataques {
+  display: grid;
+  grid-template-columns: 100px 100px;
+}
