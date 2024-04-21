@@ -46,17 +46,29 @@ let lienzo = mapa.getContext('2d')
 let intervalo
 let mapaBackground = new Image()
 mapaBackground.src = './mokepon/assets/mokemap.webp'
+let alturaQueBuscamos
+let anchoDelMapa = window.innerWidth - 20
+const anchoMaximoDelMapa = 350
+
+if(anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 20
+}
+
+alturaQueBuscamos = anchoDelMapa * 600 / 800
+
+mapa.width = anchoDelMapa
+mapa.height = alturaQueBuscamos
 
 class Mokepon {
-    constructor(nombre, foto, vida, fotoMapa, x = 10, y=10) {
+    constructor(nombre, foto, vida, fotoMapa) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
-        this.x = x
-        this.y = y
         this.ancho = 40
         this.alto = 40
+        this.x = aleatorio(0, mapa.width - this.ancho)
+        this.y = aleatorio(0, mapa.height - this.alto)
         this.mapaFoto = new Image()
         this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
@@ -80,11 +92,11 @@ let capipepo = new Mokepon('Capipepo', './mokepon/assets/mokepons_mokepon_capipe
 
 let ratigueya = new Mokepon('Ratigueya', './mokepon/assets/mokepons_mokepon_ratigueya_attack.png', 5, "./mokepon/assets/ratigueya.webp")
 
-let hipodogeEnemigo = new Mokepon('Hipodoge', './mokepon/assets/mokepons_mokepon_hipodoge_attack.png', 5, "./mokepon/assets/hipodoge.webp", 80,120)
+let hipodogeEnemigo = new Mokepon('Hipodoge', './mokepon/assets/mokepons_mokepon_hipodoge_attack.png', 5, "./mokepon/assets/hipodoge.webp")
 
-let capipepoEnemigo = new Mokepon('Capipepo', './mokepon/assets/mokepons_mokepon_capipepo_attack.png', 5, "./mokepon/assets/Capipepo.webp", 150,95)
+let capipepoEnemigo = new Mokepon('Capipepo', './mokepon/assets/mokepons_mokepon_capipepo_attack.png', 5, "./mokepon/assets/Capipepo.webp")
 
-let ratigueyaEnemigo = new Mokepon('Ratigueya', './mokepon/assets/mokepons_mokepon_ratigueya_attack.png', 5, "./mokepon/assets/ratigueya.webp", 200, 190)
+let ratigueyaEnemigo = new Mokepon('Ratigueya', './mokepon/assets/mokepons_mokepon_ratigueya_attack.png', 5, "./mokepon/assets/ratigueya.webp")
 
 hipodoge.ataques.push(
     { nombre: '💧', id: 'boton-agua' },
@@ -415,8 +427,7 @@ function sePresionoUnaTecla(event) {
 }
 
 function iniciarMapa() {
-    mapa.width = 320
-    mapa.height = 240
+   
     mascotaJugadorObjeto = obtenerObjectoMascota(mascotaJugador)
     intervalo = setInterval(pintarCanvas, 50)
    
