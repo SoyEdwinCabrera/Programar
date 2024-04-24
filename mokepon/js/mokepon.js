@@ -21,6 +21,7 @@ const contenedorAtaques = document.getElementById('contenedorAtaques')
 const sectionVerMapa = document.getElementById('ver-mapa')
 const mapa = document.getElementById('mapa')
 
+let jugadorId = null
 let mokepones = []
 let ataqueJugador =[]
 let ataqueEnemigo = []
@@ -45,7 +46,7 @@ let vidasEnemigo = 3
 let lienzo = mapa.getContext('2d')
 let intervalo
 let mapaBackground = new Image()
-mapaBackground.src = './mokepon/assets/mokemap.webp'
+mapaBackground.src = '/mokepon/assets/mokemap.webp'
 let alturaQueBuscamos
 let anchoDelMapa = window.innerWidth - 20
 const anchoMaximoDelMapa = 350
@@ -186,6 +187,7 @@ function unirseAlJuego() {
                 res.text()
                     .then(function (respuesta) {
                         console.log(respuesta)
+                        jugadorId = respuesta
                     })
             }
         })
@@ -210,9 +212,23 @@ function seleccionarMascotaJugador() {
         alert('Selecciona una mascota')
     }
 
+    seleccionarMokepon(mascotaJugador)
+
     extraerAtaques(mascotaJugador)
     sectionVerMapa.style.display = 'flex'
     iniciarMapa()
+}
+
+function seleccionarMokepon(mascotaJugador){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+        method: 'post',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            mokepon: mascotaJugador
+        })
+    })
 }
 
 function extraerAtaques(mascotaJugador) {
